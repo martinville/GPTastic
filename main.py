@@ -115,7 +115,7 @@ def on_message(client, userdata, msg):
 
         HA_URL = ha_url + ":" + str(ha_port)
         TOKEN = ha_api_key
-        #"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjZjNmYmVmM2UxNTA0NjkzYjY0YTg5YmQ2NDZkMDNmNiIsImlhdCI6MTc2OTkyNzc1MCwiZXhwIjoyMDg1Mjg3NzUwfQ.QxrYDNwg3tMgigPJCrkNfebg7rWvk_IsmAn5l_2EOkw"
+        
 
 
         entity_id = "sensor." + senor_name
