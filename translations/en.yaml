@@ -1,0 +1,36 @@
+configuration:
+  openai_api_key:
+    name: "OpenAI API Key"
+    description: "Your OpenAI API key used to access the OpenAI API."
+
+  ha_api_key:
+    name: "Home Assistant API Key"
+    description: "Long-lived access token for Home Assistant."
+
+  ha_url:
+    name: "Home Assistant URL"
+    description: "Base URL of your Home Assistant instance (e.g. http://homeassistant.local)."
+
+  ha_port:
+    name: "Home Assistant Port"
+    description: "Port number used by Home Assistant."
+
+  mqtt_broker_ip:
+    name: "MQTT Broker IP"
+    description: "IP address or hostname of the MQTT broker."
+
+  mqtt_broker_port:
+    name: "MQTT Broker Port"
+    description: "Port used by the MQTT broker."
+
+  mqtt_user:
+    name: "MQTT Username"
+    description: "Username for authenticating with the MQTT broker."
+
+  mqtt_pass:
+    name: "MQTT Password"
+    description: "Password for authenticating with the MQTT broker."
+
+  mqtt_topic:
+    name: "MQTT Topic"
+    description: "MQTT topic used for incoming messages."

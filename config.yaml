@@ -1,0 +1,43 @@
+name: "GPTastic"
+description: "Integrates Home Assistant with OpenAI to enable AI-powered automations and natural language interactions."
+version: "1.01"
+slug: "gptastic"
+init: false
+hassio_api: true
+homeassistant_api: true
+auth_api: true
+host_network: true
+
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+url: "https://github.com/martinville/solarsynkv3/tree/main"
+
+  
+options:
+  openai_api_key: ""
+  ha_api_key: ""
+  ha_url: ""
+  ha_port: 8312
+  mqtt_broker_ip: ""
+  mqtt_broker_port: "8123"
+  mqtt_user: ""
+  mqtt_pass: ""
+  mqtt_topic: "gptastic/incoming"
+
+  
+schema:
+  openai_api_key: password
+  ha_api_key: password
+  ha_url: str
+  ha_port: int
+  mqtt_broker_ip: str
+  mqtt_broker_port: int
+  mqtt_user: str  
+  mqtt_pass: password
+  mqtt_topic: str
+  
+
