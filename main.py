@@ -16,7 +16,9 @@ class ConsoleColor:
     ENDC = "\033[0m"
     BOLD = "\033[1m" 
 
-print(ConsoleColor.OKCYAN + "Starting GPTastic..." + ConsoleColor.ENDC, flush=True)
+print(ConsoleColor.OKCYAN  + "**************************************************************************" + ConsoleColor.ENDC, flush=True)
+print(ConsoleColor.OKCYAN + "** Starting GPTastic...                                                 **" + ConsoleColor.ENDC, flush=True)
+print(ConsoleColor.OKCYAN  + "**************************************************************************" + ConsoleColor.ENDC, flush=True)
 print("Loading configuration /data/options.json...")
 
 # Load settings from JSON file
@@ -65,6 +67,7 @@ def on_connect(client, userdata, flags, rc):
     #print(f"on_connect rc={rc}", flush=True)
     if rc == 0:
         print(ConsoleColor.OKGREEN +  "MQTT Connect success..."+ ConsoleColor.ENDC, flush=True) 
+        print("Waiting for message to arrive on MQTT topic: " + mqtt_topic, flush=True)
         client.subscribe(TOPIC)
     elif rc in (4, 5):
         print(ConsoleColor.FAIL +  "Login failed, check username and password..."+ ConsoleColor.ENDC, flush=True) 
@@ -84,7 +87,7 @@ def on_message(client, userdata, msg):
         response = requests.post(url, headers=headers, json=data)
         response.raise_for_status()
         inCommingString = response.json()["choices"][0]["message"]["content"]
-        print(response.json()["choices"][0]["message"]["content"], flush=True)
+        print("Received from OpenAI:" + response.json()["choices"][0]["message"]["content"], flush=True)
         
         #BOF HA POST DATA VIA API
         senor_name = ""
@@ -137,17 +140,17 @@ def on_message(client, userdata, msg):
         try:
             response = requests.post(url, headers=headers, json=data)
             response.raise_for_status()  
-            print("Posted:" + senor_name + "->" + sensor_val, flush=True) 
+            print("Posted Entity->"+ ConsoleColor.WARNING  + senor_name + ":" + ConsoleColor.ENDC + ConsoleColor.OKCYAN + sensor_val + ConsoleColor.ENDC , flush=True) 
             senor_name = ""
             sensor_val = ""    
             
             print(response)
         except requests.exceptions.HTTPError as e:
-            print("HA Post Request failed:", e)
+            print(ConsoleColor.FAIL + "Home Assitant Post Request failed:" + ConsoleColor.ENDC, e, flush=True)
 
         #EOF HA POST DATA VIA API
     except requests.exceptions.HTTPError as e:
-        print(ConsoleColor.FAIL + "Request failed:" + ConsoleColor.ENDC , e)
+        print(ConsoleColor.FAIL + "OpenAI Request failed:" + ConsoleColor.ENDC , e, flush=True)
     #EOF OPEN AI *****************************************************************************************************************************    
 
 
@@ -159,7 +162,13 @@ client.on_message = on_message
 client.enable_logger()
 
 print("Connecting...", flush=True)
-client.connect(BROKER, PORT, 60)
+
+try:
+    client.connect(BROKER, PORT, 60)
+except Exception as e:
+    print(ConsoleColor.FAIL + f"Failed to connect: {e}" + ConsoleColor.ENDC )
+
+
 
 client.loop_start()
 ##print(ConsoleColor.OKGREEN +  "MQTT Connected and waiting for incomming message." + ConsoleColor.ENDC, flush=True)
