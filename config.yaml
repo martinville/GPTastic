@@ -1,6 +1,6 @@
 name: "GPTastic"
 description: "Integrates Home Assistant with OpenAI to enable AI-powered automations and natural language interactions."
-version: "1.01"
+version: "1.02"
 slug: "gptastic"
 init: false
 hassio_api: true
@@ -40,4 +40,5 @@ schema:
   mqtt_pass: password
   mqtt_topic: str
   
+
 
