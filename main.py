@@ -35,6 +35,7 @@ try:
         mqtt_user = json_settings['mqtt_user']
         mqtt_pass = json_settings['mqtt_pass']
         mqtt_topic = json_settings['mqtt_topic']
+        
 
 
         #print(openai_api_key) #Debbug only don't expose api keys in log
@@ -54,6 +55,22 @@ except Exception as e:
     print(ConsoleColor.FAIL + "Error loading settings.json. Ensure the file exists and is valid JSON." + ConsoleColor.ENDC)
     exit()
 
+required = {
+    "ha_url": ha_url,
+    "ha_port": ha_port,
+    "ha_api_key": ha_api_key,
+    "mqtt_broker_ip": mqtt_broker_ip,
+    "mqtt_broker_port": mqtt_broker_port,
+    "mqtt_user": mqtt_user,
+    "mqtt_pass": mqtt_pass,
+    "mqtt_topic": mqtt_topic,
+}
+
+missing = [name for name, value in required.items() if not value]
+
+if missing:
+    print(f"Minimum config not met, missing: {', '.join(missing)}", flush=True)
+    raise SystemExit(1)
 
 BROKER = mqtt_broker_ip
 PORT = mqtt_broker_port
