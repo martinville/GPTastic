@@ -1,6 +1,8 @@
 import json
 import paho.mqtt.client as mqtt
 import time
+from datetime import datetime
+
 import requests
 import os
 
@@ -157,7 +159,7 @@ def on_message(client, userdata, msg):
         try:
             response = requests.post(url, headers=headers, json=data)
             response.raise_for_status()  
-            print("Posted Entity->"+ ConsoleColor.WARNING  + senor_name + ":" + ConsoleColor.ENDC + ConsoleColor.OKCYAN + sensor_val + ConsoleColor.ENDC , flush=True) 
+            print("Posted Entity->" + datetime.now().strftime("%Y-%m-%d %H:%M:%S") + " " + ConsoleColor.WARNING  + senor_name + ":" + ConsoleColor.ENDC + ConsoleColor.OKCYAN + sensor_val + ConsoleColor.ENDC , flush=True) 
             senor_name = ""
             sensor_val = ""    
             
