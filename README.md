@@ -9,6 +9,15 @@ the response, and then updates a Home Assistant entity based on the result.
 The add-on is designed to integrate AI-driven decisions into Home Assistant automations in a structured
 and predictable way.
 
+## ☕ Support This Project
+
+If you find this project useful, consider supporting it:
+
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support-yellow?style=for-the-badge&logo=buy-me-a-coffee)](https://www.buymeacoffee.com/YOUR_USERNAME)
+
+Or visit: https://www.buymeacoffee.com/YOUR_USERNAME
+
+
 ---
 
 ## What the Add-on Does
